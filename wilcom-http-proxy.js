@@ -46,11 +46,17 @@ proxy.on('error', function (err, req, res) {
 });
 
 
-
-module.exports = function (req, res, info, url) {
-    console.log('===================================http://'+info.host+':' +  info.port + url);
+/**
+ * req 的一些参数示例：
+ * url: '/loginPortal',
+ * baseUrl: '/passive-recorder',
+ * originalUrl: '/passive-recorder/loginPortal',
+ */
+module.exports = function (req, res, hostinfo, baseUrl) {
+    baseUrl = baseUrl === undefined ? "" : baseUrl;
+    console.log('===================================http://' + hostinfo.host + ':' +  hostinfo.port + baseUrl);
     proxy.web(req, res, {
-        target: 'http://'+info.host+':' +  info.port + url,
+        target: 'http://' + hostinfo.host + ':' +  hostinfo.port + baseUrl,
     },(e)=>{
         console.log("proxy error call back ");
         console.log(e);

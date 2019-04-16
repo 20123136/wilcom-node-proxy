@@ -17,7 +17,7 @@ router.use('/security', function (req, res) {
 })
 
 router.use('/apollo', function (req, res) {
-    routes(req, res, config.apollo, "");
+    routes(req, res, config.apollo);
 })
 router.use('/appId', function (req, res) {
     res.json(config.apollo);
